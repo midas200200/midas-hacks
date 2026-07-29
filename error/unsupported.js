@@ -62,8 +62,8 @@
       animation: midasUnsupportedFadeOut 0.45s ease forwards;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-card {
-      width: min(460px, calc(100vw - 40px));
+    #${OVERLAY_ID} .midas-card {
+      width: min(470px, calc(100vw - 40px));
       padding: 28px;
 
       border: 1px solid #555;
@@ -77,20 +77,30 @@
       animation: midasUnsupportedCardIn 0.6s ease forwards;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-title {
-      margin-bottom: 10px;
+    #${OVERLAY_ID} .midas-brand {
+      margin-bottom: 5px;
 
       font-size: 28px;
       font-weight: 700;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-message {
-      color: #cfcfcf;
-      font-size: 16px;
-      line-height: 1.5;
+    #${OVERLAY_ID} .midas-subtitle {
+      margin-bottom: 14px;
+
+      color: #a98cff;
+      font-size: 17px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-button {
+    #${OVERLAY_ID} .midas-message {
+      color: #cfcfcf;
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    #${OVERLAY_ID} .midas-button {
       margin: 22px auto 0;
       min-width: 110px;
       padding: 10px 18px;
@@ -110,17 +120,17 @@
         transform 0.15s ease;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-button:disabled {
+    #${OVERLAY_ID} .midas-button:disabled {
       opacity: 0.45;
       filter: grayscale(0.55);
       cursor: not-allowed;
     }
 
-    #${OVERLAY_ID} .midas-unsupported-button:not(:disabled):hover {
+    #${OVERLAY_ID} .midas-button:not(:disabled):hover {
       filter: brightness(1.15);
     }
 
-    #${OVERLAY_ID} .midas-unsupported-button:not(:disabled):active {
+    #${OVERLAY_ID} .midas-button:not(:disabled):active {
       transform: scale(0.96);
     }
   `;
@@ -131,17 +141,21 @@
   overlay.id = OVERLAY_ID;
 
   overlay.innerHTML = `
-    <div class="midas-unsupported-card">
-      <div class="midas-unsupported-title">
+    <div class="midas-card">
+      <div class="midas-brand">
         Midas Hacks
       </div>
 
-      <div class="midas-unsupported-message">
+      <div class="midas-subtitle">
+        Unsupported
+      </div>
+
+      <div class="midas-message">
         This Neal.fun game is not supported yet.
       </div>
 
       <button
-        class="midas-unsupported-button"
+        class="midas-button"
         type="button"
         disabled
       >
@@ -152,15 +166,14 @@
 
   document.body.appendChild(overlay);
 
-  const okButton =
-    overlay.querySelector(".midas-unsupported-button");
+  const button = overlay.querySelector(".midas-button");
 
   const enableButtonTimer = setTimeout(() => {
-    okButton.disabled = false;
+    button.disabled = false;
   }, 3000);
 
-  okButton.addEventListener("click", () => {
-    if (okButton.disabled) return;
+  button.addEventListener("click", () => {
+    if (button.disabled) return;
 
     clearTimeout(enableButtonTimer);
 
