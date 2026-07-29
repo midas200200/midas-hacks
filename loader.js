@@ -24,7 +24,7 @@
    */
   const games = {
     "stimulation-clicker": {
-      status: "supported",
+      status: "maintenance",
       url: URLS.stimulationClicker
     }
 
